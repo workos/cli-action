@@ -2,9 +2,6 @@ const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
 const io = require('@actions/io');
 
-const workspace = process.env.GITHUB_WORKSPACE;
-const binDir = `${workspace}/bin`;
-
 run().catch(error => {
     core.setFailed(error.message);
 })
@@ -12,18 +9,18 @@ run().catch(error => {
 async function run() {
     switch (process.platform) {
         case "win32": {
-            const url = 'https://github.com/workos/workos-cli/releases/download/v0.2.0/workos_cli_Windows_x86_64.zip';
-            await installZip(binDir, url);
+            const url = `https://github.com/workos/workos-cli/releases/latest/download/workos_cli_Windows_x86_64.zip`;
+            await installZip(url);
             break;
         }
         case "linux": {
-            const url = 'https://github.com/workos/workos-cli/releases/download/v0.2.0/workos_cli_Linux_x86_64.tar.gz';
-            await installTarball(binDir, url);
+            const url = `https://github.com/workos/workos-cli/releases/latest/download/workos_cli_Linux_x86_64.tar.gz`;
+            await installTarball(url);
             break;
         }
         case "darwin": {
-            const url = 'https://github.com/workos/workos-cli/releases/download/v0.2.0/workos_cli_Darwin_x86_64.tar.gz';
-            await installTarball(binDir, url);
+            const url = `https://github.com/workos/workos-cli/releases/latest/download/workos_cli_Darwin_x86_64.tar.gz`;
+            await installTarball(url);
             break;
         }
         default: {
@@ -32,16 +29,14 @@ async function run() {
     }
 }
 
-async function installZip(path, url) {
-    await io.mkdirP(path);
+async function installZip(url) {
     const downloadPath = await tc.downloadTool(url);
-    await tc.extractZip(downloadPath, path);
-    core.addPath(path);
+    const pathToCLI = await tc.extractZip(downloadPath);
+    core.addPath(pathToCLI);
 }
 
-async function installTarball(path, url) {
-    await io.mkdirP(path);
+async function installTarball(url) {
     const downloadPath = await tc.downloadTool(url);
-    await tc.extractTar(downloadPath, path);
-    core.addPath(path);
+    const pathToCLI = await tc.extractTar(downloadPath;
+    core.addPath(pathToCLI);
 }
