@@ -12,17 +12,17 @@ run().catch(error => {
 async function run() {
     switch (process.platform) {
         case "win32": {
-            const url = 'https://github.com/workos/workos-cli/releases#:~:text=workos_cli_Windows_x86_64.zip';
+            const url = 'https://github.com/workos/workos-cli/releases/download/v0.2.0/workos_cli_Windows_x86_64.zip';
             await installZip(binDir, url);
             break;
         }
         case "linux": {
-            const url = 'https://github.com/workos/workos-cli/releases#:~:text=workos_cli_Linux_x86_64.tar.gz';
+            const url = 'https://github.com/workos/workos-cli/releases/download/v0.2.0/workos_cli_Linux_x86_64.tar.gz';
             await installTarball(binDir, url);
             break;
         }
         case "darwin": {
-            const url = 'https://github.com/workos/workos-cli/releases#:~:text=workos_cli_Darwin_x86_64.tar.gz';
+            const url = 'https://github.com/workos/workos-cli/releases/download/v0.2.0/workos_cli_Darwin_x86_64.tar.gz';
             await installTarball(binDir, url);
             break;
         }
