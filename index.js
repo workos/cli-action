@@ -32,12 +32,11 @@ async function run() {
 async function installZip(url) {
     const downloadPath = await tc.downloadTool(url);
     const pathToCLI = await tc.extractZip(downloadPath);
-    core.addPath(pathToCLI);
+    core.addPath(pathToCLI + "/bin");
 }
 
 async function installTarball(url) {
     const downloadPath = await tc.downloadTool(url);
     const pathToCLI = await tc.extractTar(downloadPath);
-    console.log(pathToCLI);
-    core.addPath(pathToCLI);
+    core.addPath(pathToCLI + "/bin");
 }
