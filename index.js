@@ -13,13 +13,10 @@ async function run() {
             await installZip(url);
             break;
         }
-        case "linux": {
-            const url = `https://github.com/workos/workos-cli/releases/latest/download/workos_cli_Linux_x86_64.tar.gz`;
-            await installTarball(url);
-            break;
-        }
+        case "linux":
         case "darwin": {
-            const url = `https://github.com/workos/workos-cli/releases/latest/download/workos_cli_Darwin_x86_64.tar.gz`;
+            const arch = process.arch === "arm64" ? "arm64" : "x86_64";
+            const url = `https://github.com/workos/workos-cli/releases/latest/download/workos_cli_${process.platform}_${arch}.tar.gz`;
             await installTarball(url);
             break;
         }
