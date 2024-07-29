@@ -37,6 +37,6 @@ async function installZip(url) {
 
 async function installTarball(url) {
     const downloadPath = await tc.downloadTool(url);
-    const pathToCLI = await tc.extractTar(downloadPath;
+    const pathToCLI = await tc.extractTar(downloadPath);
     core.addPath(pathToCLI);
 }
