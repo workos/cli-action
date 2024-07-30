@@ -14,6 +14,6 @@ jobs:
         uses: ./
         id: install
         with:
-          version: 'v0.2.0'
+          version: 'latest'
       - name: Test CLI
         run: workos --version
