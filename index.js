@@ -7,19 +7,8 @@ run().catch(error => {
 
 async function run() {
     const version = core.getInput('version');
-    const downloadUrlWithVersion = `https://github.com/workos/workos-cli/releases/${version}/download`
-
-    let cliArch;
-    switch (process.arch) {
-        case "arm64":
-            cliArch = "arm64";
-            break;
-        case "x64":
-            cliArch = "x86_64";
-            break;
-        default:
-            throw new Error(`Unsupported architecture '${process.arch}'`);
-    }
+    const downloadUrlWithVersion = getURLForVersion(version);
+    const cliArch = getCliArch()
 
     switch (process.platform) {
         case "win32": {
@@ -36,6 +25,25 @@ async function run() {
         default: {
             throw new Error(`Unsupported platform '${process.platform}'`);
         }
+    }
+}
+
+function getURLForVersion(version) {
+    if (version === 'latest') {
+        return `https://github.com/workos/workos-cli/releases/${version}/download`
+    } else {
+        return `https://github.com/workos/workos-cli/releases/download/${version}`
+    }
+}
+
+function getCliArch() {
+    switch (process.arch) {
+        case "arm64":
+            return "arm64";
+        case "x64":
+            return "x86_64";
+        default:
+            throw new Error(`Unsupported architecture '${process.arch}'`);
     }
 }
 
