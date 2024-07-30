@@ -1,5 +1,5 @@
 name: 'Install WorkOS CLI'
-description: 'Install the Doppler CLI into your PATH'
+description: 'Install the WorkOS CLI into your PATH'
 runs:
   using: 'node20'
   main: 'index.js'
