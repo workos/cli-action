@@ -1,0 +1,9 @@
+name: 'Install WorkOS CLI'
+description: 'Install the WorkOS CLI into your PATH'
+inputs:
+  version:
+    description: 'Version of the CLI package. Defaults to latest.'
+    required: true
+runs:
+  using: 'node20'
+  main: 'index.js'
