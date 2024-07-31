@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Install CLI
         uses: workos/cli-action@v1
+        with:
+          version: v0.2.0
       - name: Do something with the CLI
         run: workos --version
         env:
