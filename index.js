@@ -31,9 +31,13 @@ async function run() {
 function getURLForVersion(version) {
     if (version === 'latest') {
         return `https://github.com/workos/workos-cli/releases/${version}/download`
-    } else {
-        return `https://github.com/workos/workos-cli/releases/download/${version}`
     }
+
+    if (!/^v?[0-9A-Za-z.-]+$/.test(version)) {
+        throw new Error(`Invalid version '${version}'. Version must be 'latest' or a semver-like string (e.g. 'v0.2.0').`);
+    }
+
+    return `https://github.com/workos/workos-cli/releases/download/${version}`
 }
 
 function getCliArch() {
