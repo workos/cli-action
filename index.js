@@ -33,7 +33,7 @@ function getURLForVersion(version) {
         return `https://github.com/workos/workos-cli/releases/${version}/download`
     }
 
-    if (!/^v?[0-9A-Za-z.-]+$/.test(version)) {
+    if (!/^v?[0-9A-Za-z.+-]+$/.test(version)) {
         throw new Error(`Invalid version '${version}'. Version must be 'latest' or a semver-like string (e.g. 'v0.2.0').`);
     }
 
